@@ -14,14 +14,7 @@ def home():
         email_vec = vectorizer.transform([email])
         prediction = model.predict(email_vec)
         result = "Spam Email 🚫" if prediction[0] == 1 else "Not Spam ✅"
-    return f"""
-        <h2>Spam Email Detection</h2>
-        <form method="post">
-            <textarea name="email" rows="6" cols="50"></textarea><br><br>
-            <input type="submit" value="Check">
-        </form>
-        <h3>{result}</h3>
-    """
+    return render_template("index.html", result=result)
 
 if __name__ == "__main__":
     app.run(debug=True)
